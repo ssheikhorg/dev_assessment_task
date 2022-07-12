@@ -15,7 +15,7 @@ def receiver():
             data = {
                 "request_id": event["sender"]["id"],
                 "author": event["pusher"]["name"],
-                "action": event["action"],
+                "action": event["pusher"]["name"] + " pushed to " + event["repository"]["name"],
                 "from_branch": event["repository"]["name"],
                 "to_branch": event["repository"]["full_name"],
                 "timestamp": datetime.timestamp(datetime.now()),
@@ -24,7 +24,7 @@ def receiver():
             data = {
                 "request_id": event["sender"]["id"],
                 "author": event["pull_request"]["user"]["login"],
-                "action": event["action"],
+                "action": event["pusher"]["name"] + " pushed to " + event["repository"]["name"],
                 "from_branch": event["pull_request"]["head"]["ref"],
                 "to_branch": event["pull_request"]["base"]["ref"],
                 "timestamp": datetime.timestamp(datetime.now()),
