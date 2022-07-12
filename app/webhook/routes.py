@@ -28,6 +28,7 @@ def receiver():
                 "to_branch": event["pull_request"]["base"]["ref"],
                 "timestamp": datetime.timestamp(datetime.now()),
             }
+        # Insert the data into the database
         insert_extension(data)
         return json.dumps({"status": "success"})
 
@@ -36,5 +37,4 @@ def receiver():
 
 @webhook.route("/", methods=["GET"])
 def index():
-    """for dev branch"""
     return jsonify("Webhook is working")
